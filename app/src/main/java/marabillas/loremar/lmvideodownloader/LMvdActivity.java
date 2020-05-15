@@ -29,6 +29,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import marabillas.loremar.lmvideodownloader.bookmarks_feature.Bookmarks;
 import marabillas.loremar.lmvideodownloader.browsing_feature.BrowserManager;
 import marabillas.loremar.lmvideodownloader.browsing_feature.BrowserWebChromeClient;
@@ -68,6 +78,8 @@ public class LMvdActivity extends Activity implements TextView.OnEditorActionLis
 
     private ValueCallback<Uri[]> fileChooseValueCallbackMultiUri;
     private ValueCallback<Uri> fileChooseValueCallbackSingleUri;
+    private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +91,39 @@ public class LMvdActivity extends Activity implements TextView.OnEditorActionLis
 
         ImageButton go = findViewById(R.id.go);
         go.setOnClickListener(this);
+
+        /***********************************************************************************************
+        *
+        *
+        * Admob ads
+        *
+        * **********************************************************************************************/
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+
+        });
+
+
+
+
+
+// TODO: Add adView to your view hierarchy.
+/************************************************************************************************************
+* Admob ad  end here
+* ***********************************************************************************************************/
+
 
         if ((browserManager = (BrowserManager) getFragmentManager().findFragmentByTag("BM")) == null) {
             getFragmentManager().beginTransaction().add(browserManager = new BrowserManager(),
@@ -206,15 +251,31 @@ public class LMvdActivity extends Activity implements TextView.OnEditorActionLis
     }
 
     private void homeClicked() {
+
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
+
         browserManager.hideCurrentWindow();
         closeDownloads();
         closeBookmarks();
         closeHistory();
         closeOptions();
         setOnBackPressedListener(null);
+
+
     }
 
     public void browserClicked() {
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
         browserManager.unhideCurrentWindow();
         closeDownloads();
         closeBookmarks();
@@ -223,6 +284,13 @@ public class LMvdActivity extends Activity implements TextView.OnEditorActionLis
     }
 
     private void downloadsClicked() {
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
         closeBookmarks();
         closeHistory();
         closeOptions();
@@ -234,6 +302,13 @@ public class LMvdActivity extends Activity implements TextView.OnEditorActionLis
     }
 
     private void bookmarksClicked() {
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
         closeDownloads();
         closeHistory();
         closeOptions();
@@ -245,6 +320,14 @@ public class LMvdActivity extends Activity implements TextView.OnEditorActionLis
     }
 
     private void historyClicked() {
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
+
         closeDownloads();
         closeBookmarks();
         closeOptions();
@@ -271,6 +354,14 @@ public class LMvdActivity extends Activity implements TextView.OnEditorActionLis
     }
 
     private void optionsClicked() {
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
+
         closeDownloads();
         closeBookmarks();
         closeHistory();

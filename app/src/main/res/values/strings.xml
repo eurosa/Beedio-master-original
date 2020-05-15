@@ -70,4 +70,5 @@
     <string name="enable_ad_blocking">Enable Ad-blocking</string>
     <string name="automatically_start_video_detection">Automatically start video detection</string>
     <string name="get_videos">GET VIDEOS</string>
+    <string name="app_id">ca-app-pub-3940256099942544~3347511713</string>
 </resources>

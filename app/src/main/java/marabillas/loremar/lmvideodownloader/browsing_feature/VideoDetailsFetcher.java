@@ -36,6 +36,8 @@ public final class VideoDetailsFetcher {
                     metadataRetriever.setDataSource(url);
                     String filename = metadataRetriever.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_FILENAME);
                     String title = metadataRetriever.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_TITLE);
+                   // String vcodec8 = metadataRetriever.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_GENRE);
+
                     String vcodec = metadataRetriever.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_VIDEO_CODEC);
                     String acodec = metadataRetriever.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_AUDIO_CODEC);
                     String duration = metadataRetriever.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_DURATION);
