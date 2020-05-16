@@ -19,13 +19,13 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="marabillas.loremar.lmvideodownloader">
+    package="ranx.sinx.vamate">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".LMvdApp"
+        android:name="ranx.sinx.vamate.LMvdApp"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher"
@@ -34,7 +34,7 @@
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@drawable/ic_launcher">
         <activity
-            android:name=".LMvdActivity"
+            android:name="ranx.sinx.vamate.LMvdActivity"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,11 +79,11 @@
         </activity>
 
         <service
-            android:name=".download_feature.DownloadManager"
+            android:name="ranx.sinx.vamate.download_feature.DownloadManager"
             android:exported="false" />
 
         <provider
-            android:authorities="marabillas.loremar.lmvideodownloader.fileprovider"
+            android:authorities="ranx.sinx.vamate.fileprovider"
             android:name="androidx.core.content.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

@@ -27,7 +27,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "marabillas.loremar.lmvideodownloader"
+        applicationId "ranx.sinx.vamate"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 8
